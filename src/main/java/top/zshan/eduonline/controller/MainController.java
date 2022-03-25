@@ -19,4 +19,12 @@ public class MainController {
     public String index(){
         return "index";
     }
+
+    @GetMapping("/main.html")
+    public String main(){
+        return "main/main";
+    }
+
+
+
 }
