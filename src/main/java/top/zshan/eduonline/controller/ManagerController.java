@@ -31,4 +31,8 @@ public class ManagerController {
     public String courseAddManager(){
         return "manager/course_add_manager";
     }
+    @GetMapping("/count")
+    public String count(){
+        return "manager/count";
+    }
 }

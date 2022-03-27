@@ -50,6 +50,7 @@ title: DevelopHistory
     | user_phone | varchar |
     | user_photo | varchar |
     | authority  | int     |
+    | password   | varchar |
 
 - 课程(course)
 
@@ -58,7 +59,8 @@ title: DevelopHistory
     | course_id    | int     |
     | course_photo | varchar |
     | teach_id     | varchar |
-    | course_tyoe  | varchar |
+    | course_type  | varchar |
+    | detail       | varchar |
 
 - 课程视频内容(video)
 
@@ -122,7 +124,7 @@ title: DevelopHistory
 
 登录成功后用户可以进行的操作有：查看主页、查看课程、播放教学视频、查看历史记录、查看收藏课程、查看本人信息和查看讲师信息。所以我们另外需要的页面有：课程页、视频播放页、历史记录页、收藏页、本人信息页、讲师列表页、讲师信息页。
 
-管理员可以登录后台可以管理用户或者讲师的信息，添加删除课程，为课程添加删除视频，查看每日或总登录数。所以我们在管理员后台管理页有以下功能：用户管理、讲师管理、课程管理、课程视频管理、查看数据统计。
+管理员可以登录后台可以管理用户或者讲师的信息，添加删除课程，为课程添加删除视频，查看每日或总登录数。所以我们在管理员后台管理页有以下功能：用户管理、讲师管理、课程管理、查看数据统计。
 
 以上，本项目暂定有以下页面：
 
@@ -140,7 +142,6 @@ title: DevelopHistory
   - 用户管理页
   - 讲师管理页
   - 课程管理页
-  - 课程视频管理页
   - 数据统计页
 - 错误页
 

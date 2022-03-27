@@ -22,6 +22,10 @@ public class MainController {
 
     @GetMapping("/main.html")
     public String main(){
+        return "main/main";
+    }
+    @GetMapping("/admin")
+    public String admin(){
         return "manager/admin";
     }
 

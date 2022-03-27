@@ -51,13 +51,8 @@
 
             <li><a th:href="@{/user_manager}"><i class="fa fa-user"></i> <span>用户管理</span></a></li>
             <li><a th:href="@{/teach_manager}"><i class="fa fa-male"></i> <span>讲师管理</span></a></li>
-            <li class="menu-list"><a href="#"><i class="fa fa-map-marker"></i> <span>课程管理</span></a>
-                <ul class="sub-menu-list">
-                    <li><a th:href="@{/course_manager}"> 修改课程</a></li>
-                    <li><a th:href="@{/course_add_manager}"> 添加课程</a></li>
-                </ul>
-            </li>
-            <li><a th:href="@{/fontawesome}"><i class="fa fa-tag"></i> <span>数据统计</span></a></li>
+            <li><a th:href="@{/course_manager}"><i class="fa fa-folder-o"></i> <span>课程管理</span></a></li>
+            <li><a th:href="@{/count}"><i class="fa fa-tag"></i> <span>数据统计</span></a></li>
             <li><a th:href="@{/logout}"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
 
 
@@ -278,7 +273,7 @@
     <script th:src="@{js/jquery-1.10.2.min.js}"></script>
     <script th:src="@{js/jquery-ui-1.9.2.custom.min.js}"></script>
     <script th:src="@{js/jquery-migrate-1.2.1.min.js}"></script>
-    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script th:src="@{js/bootstrap.js}"></script>
     <script th:src="@{js/modernizr.min.js}"></script>
     <script th:src="@{js/jquery.nicescroll.js}"></script>
 
