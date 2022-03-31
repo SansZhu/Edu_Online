@@ -8,7 +8,17 @@ import lombok.Data;
  */
 @Data
 public class Video {
+    private Integer videoId;
     private Integer videoOrder;
     private Integer courseId;
     private String videoUrl;
+    private String videoTitle;
+
+    public Video(Integer videoId, Integer videoOrder, Integer courseId, String videoUrl, String videoTitle) {
+        this.videoId = videoId;
+        this.videoOrder = videoOrder;
+        this.courseId = courseId;
+        this.videoUrl = videoUrl;
+        this.videoTitle = videoTitle;
+    }
 }

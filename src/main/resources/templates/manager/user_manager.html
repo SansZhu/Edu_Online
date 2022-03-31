@@ -32,16 +32,13 @@
         <!-- page heading start-->
         <div class="page-heading">
             <h3>
-                Editable Table
+                用户管理页面
             </h3>
             <ul class="breadcrumb">
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a th:href="@{/admin}">管理首页</a>
                 </li>
-                <li>
-                    <a href="#">Data Table</a>
-                </li>
-                <li class="active"> Editable Table </li>
+                <li class="active"> 用户管理 </li>
             </ul>
         </div>
         <!-- page heading end-->
@@ -52,7 +49,7 @@
                 <div class="col-sm-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Editable Table
+                            用户列表
                             <span class="tools pull-right">
                         <a href="javascript:;" class="fa fa-chevron-down"></a>
                         <a href="javascript:;" class="fa fa-times"></a>
@@ -62,256 +59,214 @@
                             <div class="adv-table editable-table ">
                                 <div class="clearfix">
                                     <div class="btn-group">
-                                        <button id="editable-sample_new" class="btn btn-primary">
-                                            Add New <i class="fa fa-plus"></i>
+<!--                                        <button id="editable-sample_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal">-->
+                                        <button id="addnbutton" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                            添加新用户 <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
-                                    <div class="btn-group pull-right">
-                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li><a href="#">Print</a></li>
-                                            <li><a href="#">Save as PDF</a></li>
-                                            <li><a href="#">Export to Excel</a></li>
-                                        </ul>
+<!--                                    add button start-->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">添加用户</h4>
+                                                </div>
+                                                <div class="modal-body">
+<!--                                                    add new form start-->
+                                                    <form id="form" class="form-horizontal" method="post" enctype="multipart/form-data" >
+                                                        <div class="form-group">
+                                                            <label for="inputUsername" class="col-sm-2 control-label" >Nickname</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="inputNickname"  name="nickName" placeholder="Nickname">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="userName" class="form-control" id="inputUsername" placeholder="Username">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="email" name="userEmail" class="form-control" id="inputEmail" placeholder="Email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPhone" class="col-sm-2 control-label">Phone</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="userPhone" class="form-control" id="inputPhone" placeholder="Phone">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputFile" class="col-sm-2 control-label">Photo</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="file" id="exampleInputFile"  class="form-control" name="userPhoto">
+                                                                <p class="help-block">请选择头像上传</p>
+                                                            </div>
+                                                        </div>
+
+<!--                                                        <div class="form-group">-->
+<!--                                                            <label for="exampleInputFile">Photo</label>-->
+<!--                                                            <div class="col-sm-10">-->
+<!--                                                                <input type="file" id="exampleInputFile" name="userPhone">-->
+<!--                                                                <p class="help-block">请选择头像上传</p>-->
+<!--                                                            </div>-->
+
+<!--                                                        </div>-->
+                                                    </form>
+<!--                                                    add new form end-->
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                    <button type="button" class="btn btn-primary" id="saveUser">保存</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+<!--                                    add button end-->
+<!--                                    edit button start-->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="editModalLabel">修改用户</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!--                                                    add new form start-->
+                                                    <form id="editForm" class="form-horizontal" method="post" enctype="multipart/form-data" >
+                                                        <div class="form-group">
+                                                            <label for="editNickname" class="col-sm-2 control-label" >Nickname</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="editNickname"  name="nickName" placeholder="Nickname">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="editUsername" class="col-sm-2 control-label">Username</label>
+                                                            <div class="col-sm-10">
+                                                                <p type="text" name="userName" class="form-control-static" id="editUsername" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="editPassword" class="col-sm-2 control-label">Password</label>
+                                                            <div class="col-sm-10">
+                                                                <p type="password" name="password" class="form-control-static" id="editPassword" placeholder="Password">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="editEmail" class="col-sm-2 control-label">Email</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="email" name="userEmail" class="form-control" id="editEmail" placeholder="Email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="editPhone" class="col-sm-2 control-label">Phone</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="userPhone" class="form-control" id="editPhone" placeholder="Phone">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="notAdmin" class="col-sm-2 control-label">Authority</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="radio" name="authority" class="optionsRadios2" id="admin" placeholder="Phone" value="1">1
+                                                                <input type="radio" name="authority" class="optionsRadios2" id="notAdmin" checked placeholder="Phone" value="0">0
+                                                            </div>
+                                                        </div>
+                                                     </form>
+                                                    <!--                                                    add new form end-->
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                    <button type="button" class="btn btn-primary" id="editSave">保存</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+<!--                                    edit button end-->
+                                    <!--                                    edit button start-->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="editPhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="editPhotoModalLabel">修改头像</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!--                                                    add new form start-->
+                                                    <form id="editPhotoForm" class="form-horizontal" method="post" enctype="multipart/form-data" >
+
+                                                        <div class="form-group">
+                                                            <label for="editPhoto" class="col-sm-2 control-label">Photo</label>
+                                                            <input type="hidden" name="userId" id="editPhotoId">
+                                                            <div class="col-sm-10">
+                                                                <input type="file" id="editPhoto"  class="form-control" name="userPhoto">
+                                                                <p class="help-block">请选择头像上传</p>
+                                                            </div>
+                                                        </div>
+                                                      </form>
+                                                    <!--                                                    add new form end-->
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                    <button type="button" class="btn btn-primary" id="editPhotoSave">保存</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--                                    edit button end-->
+<!--                                    <div class="btn-group pull-right">-->
+<!--                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>-->
+<!--                                        </button>-->
+<!--                                        <ul class="dropdown-menu pull-right">-->
+<!--                                            <li><a href="#">Print</a></li>-->
+<!--                                            <li><a href="#">Save as PDF</a></li>-->
+<!--                                            <li><a href="#">Export to Excel</a></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
                                 </div>
                                 <div class="space15"></div>
                                 <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                     <thead>
                                     <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Points</th>
-                                        <th>Status</th>
+                                        <th>Photo</th>
+                                        <th>UserId</th>
+                                        <th>Nickname</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Phone</th>
+                                        <th>email</th>
+                                        <th>authority(admin=1,user=0)</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="">
-                                        <td>Jonathan</td>
-                                        <td>Smith</td>
-                                        <td>3455</td>
-                                        <td class="center">Lorem ipsume</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Mojela</td>
-                                        <td>Firebox</td>
-                                        <td>567</td>
-                                        <td class="center">new user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Akuman </td>
-                                        <td> Dareon</td>
-                                        <td>987</td>
-                                        <td class="center">ipsume dolor</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Theme</td>
-                                        <td>Bucket</td>
-                                        <td>342</td>
-                                        <td class="center">Good Org</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Jhone</td>
-                                        <td> Doe</td>
-                                        <td>345</td>
-                                        <td class="center">super user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Margarita</td>
-                                        <td>Diar</td>
-                                        <td>456</td>
-                                        <td class="center">goolsd</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Jhon Doe</td>
-                                        <td>Jhon Doe </td>
-                                        <td>1234</td>
-                                        <td class="center"> user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Helena</td>
-                                        <td>Fox</td>
-                                        <td>456</td>
-                                        <td class="center"> Admin</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Aishmen</td>
-                                        <td> Samuel</td>
-                                        <td>435</td>
-                                        <td class="center">super Admin</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>dream</td>
-                                        <td>Land</td>
-                                        <td>562</td>
-                                        <td class="center">normal user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>babson</td>
-                                        <td> milan</td>
-                                        <td>567</td>
-                                        <td class="center">nothing</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Waren</td>
-                                        <td>gufet</td>
-                                        <td>622</td>
-                                        <td class="center">author</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Jhone</td>
-                                        <td> Doe</td>
-                                        <td>345</td>
-                                        <td class="center">super user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Margarita</td>
-                                        <td>Diar</td>
-                                        <td>456</td>
-                                        <td class="center">goolsd</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Jhon Doe</td>
-                                        <td>Jhon Doe </td>
-                                        <td>1234</td>
-                                        <td class="center"> user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Helena</td>
-                                        <td>Fox</td>
-                                        <td>456</td>
-                                        <td class="center"> Admin</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Aishmen</td>
-                                        <td> Samuel</td>
-                                        <td>435</td>
-                                        <td class="center">super Admin</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>dream</td>
-                                        <td>Land</td>
-                                        <td>562</td>
-                                        <td class="center">normal user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>babson</td>
-                                        <td> milan</td>
-                                        <td>567</td>
-                                        <td class="center">nothing</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Waren</td>
-                                        <td>gufet</td>
-                                        <td>622</td>
-                                        <td class="center">author</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Jhone</td>
-                                        <td> Doe</td>
-                                        <td>345</td>
-                                        <td class="center">super user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Margarita</td>
-                                        <td>Diar</td>
-                                        <td>456</td>
-                                        <td class="center">goolsd</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Jhon Doe</td>
-                                        <td>Jhon Doe </td>
-                                        <td>1234</td>
-                                        <td class="center"> user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Helena</td>
-                                        <td>Fox</td>
-                                        <td>456</td>
-                                        <td class="center"> Admin</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Aishmen</td>
-                                        <td> Samuel</td>
-                                        <td>435</td>
-                                        <td class="center">super Admin</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>dream</td>
-                                        <td>Land</td>
-                                        <td>562</td>
-                                        <td class="center">normal user</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>babson</td>
-                                        <td> milan</td>
-                                        <td>567</td>
-                                        <td class="center">nothing</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>Waren</td>
-                                        <td>gufet</td>
-                                        <td>622</td>
-                                        <td class="center">author</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    <tr class="" th:each="user : ${alluser}">
+                                        <td ><img th:src="${user.userPhoto}" th:userId="${user.userId}" data-toggle="modal" data-target="#editPhotoModal" id="userPhoto" class="img-circle" width="50px" height="50px" ></td>
+                                        <td th:text="${user.userId}"></td>
+                                        <td th:text="${user.nickname}"></td>
+                                        <td th:text="${user.userName}"></td>
+                                        <td th:text="${user.password}"></td>
+                                        <td th:text="${user.userPhone}"></td>
+                                        <td th:text="${user.userEmail}"></td>
+                                        <td th:text="${user.authority}"></td>
+<!--                                        <td class="center">Lorem ipsume</td>-->
+<!--                                        <td><a class="edit" href="javascript:;">Edit</a></td>-->
+                                        <td><button type="button" id="editUser" th:userId="${user.userId}" data-toggle="modal" data-target="#editModal" class="btn btn-info">修改</button></td>
+<!--                                        <td><a class="delete" id="deleteUser">Delete</a></td>-->
+                                        <td><button type="button" id="deleteUser" th:userId="${user.userId}" class="btn btn-warning">删除</button></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -357,6 +312,147 @@
     jQuery(document).ready(function() {
         EditableTable.init();
     });
+
+    $("#saveUser").click(function(){
+    //    模态框填写表单数据交给服务器
+    //    发送ajax请求保存员工
+        let form = document.getElementById("form");
+        var formdata = new FormData(form);
+      // alert(formdata.get("userPhoto"))
+        $.ajax({
+            url:"/user_manager",
+            type:"POST",
+            data: formdata,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success:function(result){
+                //提示信息
+                alert(result.msg);
+                //隐藏模态框
+                $("#myModal").modal('hide');
+                //清除模态框数据
+                $(':input','#form')
+                    .not(':button, :submit, :reset, :hidden')
+                    .val('')
+                    .removeAttr('checked')
+                    .removeAttr('selected');
+                //重新载入界面
+                window.location.reload();
+            }
+        })
+
+    })
+    // $("#deleteUser").click(function () {
+    //     let userId = document.getElementById("deleteUser").getAttribute("userId");
+    //     alert(userId)
+    // })
+    //删除用户
+    $(document).on("click","#deleteUser",function () {
+    //确认是否删除
+        let nickname = $(this).parents("tr").find("td:eq(2)").text();
+        let username = $(this).parents("tr").find("td:eq(3)").text();
+        let userId = $(this).attr("userId");
+        // alert(userId);
+
+        if (confirm("确认删除["+nickname+"]的账号["+username+"]吗？")){
+        //    确认就删除
+            $.ajax({
+                url:"/user_manager/"+userId,
+                type:"DELETE",
+                success:function(result){
+                    alert(result.msg);
+                    //重新载入界面
+                    window.location.reload();
+                }
+
+            })
+        }
+    })
+//    回显用户信息
+    $(document).on("click","#editUser",function () {
+        let userId = $(this).attr("userId");
+        getEmp(userId);
+       $("#editSave").attr("userId",userId);
+    })
+
+    //    修改用户信息
+    $(document).on("click","#editSave",function () {
+        let userId = $(this).attr("userId");
+        // alert(formdata.get("userPhoto"))
+        $.ajax({
+            url:"/editUser/"+userId,
+            type:"POST",
+            data: $("#editForm").serialize(),
+            success:function(result){
+                //提示信息
+                alert(result.msg);
+                //隐藏模态框
+                $("#editModal").modal('hide');
+                //清除模态框数据
+                $(':input','#editForm')
+                    .not(':button, :submit, :reset, :hidden')
+                    .val('')
+                    .removeAttr('checked')
+                    .removeAttr('selected');
+                //重新载入界面
+                window.location.reload();
+            }
+        })
+    })
+    //    查询员工信息
+    function  getEmp(userId){
+    $.ajax({
+        url:"/selectUser/"+userId,
+        type:"GET",
+        success:function(result){
+            // console.log(result);
+            $("#editUsername").text(result.userName);
+            $("#editPassword").text(result.password);
+            $("#editNickname").val(result.nickname);
+            $("#editEmail").val(result.userEmail);
+            $("#editPhone").val(result.userPhone);
+        }
+    })
+    }
+    //修改头像
+    $(document).on("click","#userPhoto",function () {
+        let userId = $(this).attr("userId");
+        $("#editPhotoSave").attr("userId",userId);
+
+        $("#editPhotoId").attr("value",userId);
+    })
+    $(document).on("click","#editPhotoSave",function () {
+        let userId = $(this).attr("userId");
+        let form = document.getElementById("editPhotoForm");
+        var formdata = new FormData(form);
+        // alert(formdata.get("userPhoto"))
+        $.ajax({
+            url:"/edit_photo/"+userId,
+            type:"POST",
+            data: formdata,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success:function(result){
+                //提示信息
+                alert(result.msg);
+                //隐藏模态框
+                $("#editPhotoModal").modal('hide');
+                //清除模态框数据
+                $(':input','#editPhotoForm')
+                    .not(':button, :submit, :reset, :hidden')
+                    .val('')
+                    .removeAttr('checked')
+                    .removeAttr('selected');
+                //重新载入界面
+                window.location.reload();
+            }
+        })
+
+    })
 </script>
 
 </body>

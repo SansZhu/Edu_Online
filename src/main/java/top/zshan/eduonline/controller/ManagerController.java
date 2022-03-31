@@ -15,22 +15,7 @@ public class ManagerController {
         return "manager/fontawesome";
     }
 
-    @GetMapping("/user_manager")
-    public String userManager(){
-        return "manager/user_manager";
-    }
-    @GetMapping("/teach_manager")
-    public String teachManager(){
-        return "manager/teach_manager";
-    }
-    @GetMapping("/course_manager")
-    public String courseManager(){
-        return "manager/course_manager";
-    }
-    @GetMapping("/course_add_manager")
-    public String courseAddManager(){
-        return "manager/course_add_manager";
-    }
+
     @GetMapping("/count")
     public String count(){
         return "manager/count";

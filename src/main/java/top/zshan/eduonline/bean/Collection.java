@@ -10,4 +10,11 @@ import lombok.Data;
 public class Collection {
     private Integer userId;
     private Integer courseId;
+    private Integer collectionId;
+
+    public Collection(Integer userId, Integer courseId, Integer collectionId) {
+        this.userId = userId;
+        this.courseId = courseId;
+        this.collectionId = collectionId;
+    }
 }

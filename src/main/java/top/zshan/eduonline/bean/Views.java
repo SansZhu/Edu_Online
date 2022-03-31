@@ -11,4 +11,8 @@ public class Views {
     private Integer courseId;
     private Integer view;
 
+    public Views(Integer courseId, Integer view) {
+        this.courseId = courseId;
+        this.view = view;
+    }
 }

@@ -51,6 +51,7 @@ title: DevelopHistory
     | user_photo | varchar |
     | authority  | int     |
     | password   | varchar |
+    | nickname   | varchar |
 
 - 课程(course)
 

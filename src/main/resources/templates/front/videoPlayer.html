@@ -1,15 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <title>Title</title>
 
-    <title>IT Study Platform</title>
     <style type="text/css">
         body{
             background: url("/imgs/back.jpg") no-repeat center;
@@ -35,7 +29,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
@@ -51,7 +44,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}">主页</a></li>
-                <li  class="active"><a th:href="@{/course_list}">全部课程</a></li>
+                <li ><a th:href="@{/course_list}">全部课程</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" th:if="${session.user == null}">
                 <li ><a th:href="@{/login}">登录</a></li>
@@ -78,50 +71,27 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-<div class="container " >
-    <div class="row ">
-        <div class="jumbotron container" >
-            <div class="row">
-            <div  class="col-lg-8">
-                <img th:src="${course.coursePhoto}" class="img-thumbnail" width="700px" height="400px">
-            </div>
-            <div class="col-lg-3">
-                <h2 th:text="${course.courseName}"></h2>
-                <p th:text="${course.detail}"></p>
-            </div>
-                <div class="col-lg-1">
-                    <button class="btn btn-default" id="noUserCollectionBtn" type="submit" th:if="${isCollection == null}"> 点击收藏<p class="glyphicon glyphicon-star-empty"></p></button>
-                    <button class="btn btn-default" id="collectionBtn" type="submit" th:userId="${session.user.userId}" th:courseId="${course.courseId}" th:if="${isCollection != null && isCollection == false}"> 收藏课程<p class="glyphicon glyphicon-star-empty"></p></button>
-                    <button class="btn btn-default" id="cancelCollectionBtn" type="submit" th:userId="${session.user.userId}" th:courseId="${course.courseId}" th:if="${isCollection != null && isCollection == true}"> 取消收藏<p class="glyphicon glyphicon-star"></p></button>
+<div class="container-fluid">
+    <div  class="row">
+<!-- 4:3 aspect ratio -->
+        <div class="col-lg-9">
+             <video class="embed-responsive-item" id="player" th:src="${video.videoUrl}" th:videoNextOrder="${video.videoOrder+1}" th:courseId="${course.courseId}" autoplay controls="controls">
+                 您的浏览器不支持video，请更换浏览器
+             </video>
+        </div>
+        <div class="col-lg-3" >
+            <div class="list-group">
+                <a type="button" th:href="@{/videoPlayer(videoOrder=${videolist.videoOrder},courseId=${course.courseId})}" class="list-group-item list-group-item-success " th:if="${videolist.videoOrder < video.videoOrder}" th:each="videolist : ${videoList}">[[${videolist.videoTitle}]]<div class="glyphicon glyphicon-ok"></div></a>
+                <a type="button" th:href="@{/videoPlayer(videoOrder=${videolist.videoOrder},courseId=${course.courseId})}" class="list-group-item  " th:if="${videolist.videoOrder == video.videoOrder}" th:each="videolist : ${videoList}">[[${videolist.videoTitle}]]<div class="glyphicon glyphicon-play-circle"></div></a>
+                <a type="button" th:href="@{/videoPlayer(videoOrder=${videolist.videoOrder},courseId=${course.courseId})}" class="list-group-item " th:if="${videolist.videoOrder > video.videoOrder}" th:each="videolist : ${videoList}">[[${videolist.videoTitle}]]</a>
+
+                <div class=" row text-center text-nowrap navbar-fixed-bottom" style="padding-bottom: 30px">
+                    <button type="button" th:courseId="${course.courseId}"  id="back" class="btn btn-default">返回课程页</button>
                 </div>
             </div>
-            <div class=" row text-right text-nowrap">
-                本课程播放量： [[${views}]]
-            </div>
-
         </div>
     </div>
-
-    <div class="row">
-        <ul class="list-group">
-            <li class="list-group-item" th:if="${videoList.isEmpty()}">
-                <a th:href="@{/course_list}" class="list-group-item" >此课程还没有上传课程视频哦，请提醒老师上传把！点此回到课程列表页！</a>
-            </li>
-            <li class="list-group-item" th:if="${videoList}" th:each="video : ${videoList}">
-                <span class="badge">14</span>
-                <a th:href="@{/videoPlayer(videoOrder=${video.videoOrder},courseId=${course.courseId})}" class="list-group-item"  th:text="${video.videoTitle}"></a>
-            </li>
-            </ul>
-        </div>
-    </div>
-    <hr>
-
-    <footer style="text-align:center">
-        <p>&copy; 2016 Company, Inc.</p>
-    </footer>
-
-</div><!--/.container-->
-
+</div>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -133,45 +103,17 @@
 <script src="/js/ie10-viewport-bug-workaround.js"></script>
 <script src="/js/offcanvas.js"></script>
 <script>
-    $(document).ready(function(){
-        $(".dropdown-toggle,.dropdown-menu").hover(function(){//鼠标悬停触发事件
-            $(".dropdown-toggle").dropdown('toggle');
-        });
+   let myVid=document.getElementById("player");
+
+    myVid.addEventListener('ended',function(){
+        let videoNextOrder = $(this).attr("videoNextOrder");
+        let courseId = $(this).attr("courseId");
+        window.location.href="/videoPlayer?videoOrder="+videoNextOrder+"&courseId="+courseId;
     });
-    //按钮提示框
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-    $("#noUserCollectionBtn").click(function () {
-        alert("请先登录再收藏哦！")
-    })
-    //取消收藏
-    $("#cancelCollectionBtn").click(function () {
-        let userId = $(this).attr("userId");
-        let courseId = $(this).attr("courseId");
-        $.ajax({
-            url:"/cancelCollection?userId="+userId+"&courseId="+courseId,
-            type:"GET",
-            success:function (result) {
-                alert(result.msg);
-                window.location.reload();
-            }
 
-        })
-    })
-    //收藏课程
-    $("#collectionBtn").click(function () {
-        let userId = $(this).attr("userId");
+    $("#back").click(function (){
         let courseId = $(this).attr("courseId");
-        $.ajax({
-            url:"/addCollection?userId="+userId+"&courseId="+courseId,
-            type:"GET",
-            success:function (result) {
-                alert(result.msg);
-                window.location.reload();
-            }
-
-        })
+        window.location.href="/video?courseId="+courseId;
     })
 </script>
 </body>

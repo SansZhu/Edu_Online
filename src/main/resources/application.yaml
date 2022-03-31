@@ -4,7 +4,6 @@ spring:
     username: root
     password: 123abc
     driver-class-name: com.mysql.cj.jdbc.Driver
-
     druid:
       aop-patterns: top.zshan.eduonline.*  #监控SpringBean
       filters: stat,wall     # 底层开启功能，stat（sql监控），wall（防火墙）
@@ -48,6 +47,10 @@ spring:
     admin:
       client:
         url: http://localhost:8888
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
 mybatis:
   #  config-location: classpath:mybatis/mybatis-config.xml 用了下面的配置 就不用写全局配置文件
   mapper-locations: classpath:mybatis/mapper/*.xml
