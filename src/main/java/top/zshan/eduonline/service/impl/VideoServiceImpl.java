@@ -31,6 +31,9 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public boolean insertCourseForOne(Video video) {
         int insert = videoMapper.insert(video);
+        if (insert == 1){
+            return true;
+        }
         return false;
     }
 
@@ -54,5 +57,34 @@ public class VideoServiceImpl implements VideoService {
         queryWrapper.allEq(map);
         Video video = videoMapper.selectOne(queryWrapper);
         return video;
+    }
+
+    @Override
+    public boolean videoTitleIsHas(String videoTitle,Integer courseId) {
+        QueryWrapper<Video> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("course_id",courseId);
+        List<Video> videos = videoMapper.selectList(queryWrapper);
+        boolean flag = true;
+        for (Video v :
+                videos) {
+             if(videoTitle.equals(v.getVideoTitle())){
+                 flag = false;
+             }
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean videoOrderIsHas(Integer videoOrder,Integer courseId) {
+        QueryWrapper<Video> queryWrapper = new QueryWrapper<>();
+        Map<String,Integer> map = new HashMap<>();
+        map.put("course_id",courseId);
+        map.put("video_order",videoOrder);
+        queryWrapper.allEq(map);
+        List<Video> videos = videoMapper.selectList(queryWrapper);
+        if (videos.isEmpty()){
+            return true;
+        }
+        return false;
     }
 }

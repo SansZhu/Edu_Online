@@ -1,4 +1,4 @@
-(function() {
+
   var $, Morris, minutesSpecHelper, secondsSpecHelper,
     __slice = [].slice,
     __hasProp = {}.hasOwnProperty,
@@ -1764,4 +1764,4 @@
 
   })(Morris.EventEmitter);
 
-}).call(this);
+

@@ -7,4 +7,5 @@ package top.zshan.eduonline.service;
 public interface ViewsService {
     void updateViews(Integer courseId);
     Integer getViews(Integer courseId);
+    Long getAllViews();
 }

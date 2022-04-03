@@ -57,4 +57,12 @@ public class CollectionServiceImpl implements CollectionService {
         }
         return false;
     }
+
+    @Override
+    public List<Collection> getAllCollectionCourseByUserId(Integer userId) {
+        QueryWrapper<Collection> collectionQueryWrapper = new QueryWrapper<>();
+        collectionQueryWrapper.eq("user_id",userId);
+        List<Collection> collections = collectionMapper.selectList(collectionQueryWrapper);
+        return collections;
+    }
 }

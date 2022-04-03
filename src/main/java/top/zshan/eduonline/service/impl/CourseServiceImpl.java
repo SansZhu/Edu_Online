@@ -93,4 +93,14 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper,Course> implemen
             }else
                 return false;
     }
+
+    @Override
+    public List<Course> getAllCourseByType(String courseType) {
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("course_type",courseType);
+        List<Course> courses = courseMapper.selectList(queryWrapper);
+        return courses;
+    }
+
+
 }

@@ -74,7 +74,30 @@ public class VideoController {
 
     }
 
+    @ResponseBody
+    @GetMapping("/videoTitleIsHas")
+    public Integer videoTitleIsHas(@RequestParam("videoTitle")String videoTitle,
+                                   @RequestParam("courseId")Integer courseId){
+        boolean b = videoService.videoTitleIsHas(videoTitle, courseId);
+//        System.out.println(b);
+        if (b){
+            return 1;
+        }
+        return 0;
 
+    }
+    @ResponseBody
+    @GetMapping("/videoOrderIsHas")
+    public Integer videoOrderIsHas(@RequestParam("videoOrder")Integer videoOrder,
+                                   @RequestParam("courseId")Integer courseId){
+        boolean b = videoService.videoOrderIsHas(videoOrder,courseId);
+//        System.out.println(b);
+        if (b){
+            return 1;
+        }
+        return 0;
+
+    }
 
 
 }

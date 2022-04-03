@@ -10,6 +10,15 @@ import java.sql.Date;
  */
 @Data
 public class Count {
-    private Date date;
+    private Date  date;
     private Integer loginCount;
+
+    public Count(Integer loginCount) {
+        this.loginCount = loginCount;
+    }
+
+    public Count(Date date, Integer loginCount) {
+        this.date = date;
+        this.loginCount = loginCount;
+    }
 }

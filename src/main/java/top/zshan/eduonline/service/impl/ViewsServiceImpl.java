@@ -8,6 +8,8 @@ import top.zshan.eduonline.mapper.ViewsMapper;
 import top.zshan.eduonline.service.VideoService;
 import top.zshan.eduonline.service.ViewsService;
 
+import java.util.List;
+
 /**
  * @author SansZhu
  * @create 2022/3/31 20:56
@@ -40,5 +42,16 @@ public class ViewsServiceImpl implements ViewsService {
             return 0;
         }
         return views.getView();
+    }
+
+    @Override
+    public Long getAllViews() {
+        List<Views> views = viewsMapper.selectList(null);
+        Long allViews = 0l;
+        for (Views v :
+                views) {
+            allViews += v.getView();
+        }
+        return allViews;
     }
 }

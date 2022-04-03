@@ -7,7 +7,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>Login</title>
+    <title>登录</title>
 
     <div th:include="common/admin_common :: common_head"></div>
 </head>
@@ -18,55 +18,29 @@
 
     <form class="form-signin" th:action="@{/login}" method="post">
         <div class="form-signin-heading text-center">
-            <h1 class="sign-title">Sign In</h1>
+            <h1 class="sign-title">登录</h1>
             <img src="images/login-logo.png" alt=""/>
         </div>
         <div class="login-wrap">
-            <label><p style="color: #ff0000" th:text="${msg}"></p></label>
-            <input type="text" class="form-control" placeholder="User ID" name="userName" autofocus>
-            <input type="password" class="form-control" placeholder="Password" name="password">
+            <label><span style="color: #ff0000" class="help_block" th:text="${msg}"></span></label>
+            <span style="color: #ff0000" class="help_block" ></span>
+            <input type="text" class="form-control" id="userName" placeholder="User ID" name="userName" autofocus>
+            <span style="color: #ff0000" class="help_block"></span>
+            <input type="password" class="form-control" id="password"  placeholder="Password" name="password">
 
-            <button class="btn btn-lg btn-login btn-block" type="submit">
+            <button class="btn btn-lg btn-login btn-block" id="submit" type="submit">
                 <i class="fa fa-check"></i>
             </button>
 
             <div class="registration">
-                Not a member yet?
-                <a class="" href="registration.html">
-                    Signup
+                还没有账号？
+                <a class="" th:href="@{/regist}">
+                    注册
                 </a>
             </div>
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-                <span class="pull-right">
-                    <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
-
-                </span>
-            </label>
 
         </div>
 
-        <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Forgot Password ?</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Enter your e-mail address below to reset your password.</p>
-                        <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                        <button class="btn btn-primary" type="button">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- modal -->
 
     </form>
 
@@ -80,6 +54,55 @@
 <script src="js/jquery-1.10.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/modernizr.min.js"></script>
+<script>
+    //显示校验信息方法
+    function show_validate_msg(ele,status,msg){
+        $(ele).parent().removeClass("has-error has-success");
+        $(ele).prev("span").text("");
+        if ("success"==status){
+            $(ele).parent().addClass("has-success");
+            $(ele).prev("span").text(msg);
+        }else if ("error"==status){
+            $(ele).parent().addClass("has-error");
+            $(ele).prev("span").text(msg);
+        }
+    }
+    //校验表单数据
+    function validate_add_form(){
+        //    拿到校验数据，使用正则表达式
 
+
+        let userName = $("#userName").val();
+
+        if(userName.trim() == ""){
+            show_validate_msg("#userName","error","用户名不能为空");
+            return false;
+        }else {
+            show_validate_msg("#userName","success","");
+        }
+
+
+        let password = $("#password").val();
+        if(password.trim() == ""){
+            show_validate_msg("#password","error","密码不能为空");
+            return false;
+        }else {
+            show_validate_msg("#password","success","");
+        }
+
+        return  true;
+    }
+
+
+    $("#submit").click(function() {
+        //    模态框填写表单数据交给服务器
+        //    进行校验
+        if (!validate_add_form()) {
+            return false;
+        }
+
+        return  true;
+    });
+</script>
 </body>
 </html>

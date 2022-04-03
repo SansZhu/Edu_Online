@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>注册</title>
+
+    <div th:include="common/admin_common :: common_head"></div>
+</head>
+
+<body class="login-body">
+
+<div class="container">
+
+    <form class="form-signin" th:action="@{/regist}" id="regist" method="post" enctype="multipart/form-data">
+        <div class="form-signin-heading text-center">
+            <h1 class="sign-title">Registration</h1>
+            <img src="images/login-logo.png" alt=""/>
+        </div>
+        <div class="login-wrap">
+            <p>请输入注册信息</p>
+            <span class="help_block"></span>
+            <input type="text" autofocus="" id="userName" name="userName" placeholder="账号" class="form-control">
+            <span class="help_block"></span>
+            <input type="password" autofocus="" id="password" name="password" placeholder="密码" class="form-control">
+            <span class="help_block"></span>
+            <input type="password" autofocus="" id="confirmPassword" name="" placeholder="确认密码" class="form-control">
+            <span class="help_block"></span>
+            <input type="text" autofocus="" id="userEmail" name="userEmail" placeholder="邮箱" class="form-control">
+            <span class="help_block"></span>
+            <input type="text" autofocus="" id="userPhone" name="userPhone" placeholder="电话" class="form-control">
+            <span class="help_block"></span>
+            <input type="text" autofocus="" id="nickName" name="nickName" placeholder="昵称" class="form-control">
+
+
+            <span class="help_block">请选择头像上传（只支持【.jpg】或【.png】格式图片）</span>
+            <input type="file" id="userPhoto" autofocus="" name="userPhoto" placeholder="photo" class="form-control">
+            <button type="submit" id="submit" class="btn btn-lg btn-login btn-block">
+                <i class="fa fa-check"></i>
+            </button>
+            <div class="registration">
+                已经有账号了？直接登录：
+                <a th:href="@{/login}" class="">
+                    登录
+                </a>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script>
+    //显示校验信息方法
+    function show_validate_msg(ele,status,msg){
+        $(ele).parent().removeClass("has-error has-success");
+        $(ele).prev("span").text("");
+        if ("success"==status){
+            $(ele).parent().addClass("has-success");
+            $(ele).prev("span").text(msg);
+        }else if ("error"==status){
+            $(ele).parent().addClass("has-error");
+            $(ele).prev("span").text(msg);
+        }
+    }
+    //校验表单数据
+    function validate_add_form(){
+        //    拿到校验数据，使用正则表达式
+
+
+        let userName = $("#userName").val();
+        let regUserName = /(^[a-z0-9_-]{3,16}$)/;
+
+        $.ajax({
+            url:"/userIsHas?userName="+userName,
+            type:"GET",
+            success:function (result) {
+                if (result== 0){
+                    show_validate_msg("#userName","error","用户名已被占用，请更换用户名");
+                    return false;
+                }
+            }
+        })
+
+        if(!regUserName.test(userName)){
+            show_validate_msg("#userName","error","用户名格式为3-16位英文数字混合");
+            return false;
+        }else {
+            show_validate_msg("#userName","success","");
+        }
+
+
+        let password = $("#password").val();
+        let regPassword = 	/^[a-z0-9_-]{6,18}$/;
+        if(!regPassword.test(password)){
+            show_validate_msg("#password","error","密码格式为6-18位英文数字混合");
+            return false;
+        }else {
+            show_validate_msg("#password","success","");
+        }
+        let confirmPassword = $("#confirmPassword").val();
+        if(confirmPassword != password){
+            show_validate_msg("#confirmPassword","error","确认密码与密码不符");
+            return false;
+        }else {
+            show_validate_msg("#confirmPassword","success","");
+        }
+
+
+        let userEmail = $("#userEmail").val();
+        let regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        if(!regEmail.test(userEmail)){
+            show_validate_msg("#userEmail","error","请输入正确邮箱格式");
+            return false;
+        }else {
+            show_validate_msg("#userEmail","success","");
+        }
+        let userPhone = $("#userPhone").val();
+        let regPhone = /^[1]([3-9])[0-9]{9}$/;
+        if(!regPhone.test(userPhone)){
+            show_validate_msg("#userPhone","error","请输入正确号段的手机号");
+            return false;
+        }else {
+            show_validate_msg("#userPhone","success","");
+        }
+        let nickName = $("#nickName").val();
+        let regNickName = /^[0-9A-Za-z\u4E00-\u9FFF]{2,6}$/;
+        if(!regNickName.test(nickName)){
+            // alert("昵称格式为2-6位中英文混合");
+            show_validate_msg("#nickName","error","昵称格式为2-6位中英文混合");
+            return false;
+        }else {
+            show_validate_msg("#nickName","success","");
+        }
+        let userPhoto = $("#userPhoto").val();
+        let regPhoto = /^.*?\.(jpg|png)$/;
+        if(!regPhoto.test(userPhoto)){
+            show_validate_msg("#userPhoto","error","请传入【.jpg】或【.png】格式图片");
+            return false;
+        }else {
+            show_validate_msg("#userPhoto","success","");
+        }
+
+        return true;
+
+    }
+
+
+    $("#submit").click(function() {
+        //    模态框填写表单数据交给服务器
+        //    进行校验
+        if (!validate_add_form()) {
+            return false;
+        }
+
+        return  true;
+    });
+</script>
+
+
+
+</body>
+</html>

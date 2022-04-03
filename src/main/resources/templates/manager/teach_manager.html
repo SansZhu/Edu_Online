@@ -7,7 +7,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>Editable Table</title>
+    <title>讲师管理</title>
 
     <!--data table-->
     <link rel="stylesheet" href="js/data-tables/DT_bootstrap.css" />
@@ -81,24 +81,28 @@
                                                             <label for="inputTeachName" class="col-sm-2 control-label">TeacherName</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="teachName" class="form-control" id="inputTeachName" placeholder="TeacherName">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputTeachEmail" class="col-sm-2 control-label">Email</label>
                                                             <div class="col-sm-10">
                                                                 <input type="email" name="teachEmail" class="form-control" id="inputTeachEmail" placeholder="Email">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputTeachPhone" class="col-sm-2 control-label">Phone</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="teachPhone" class="form-control" id="inputTeachPhone" placeholder="Phone">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputTeachPhoto" class="col-sm-2 control-label">Photo</label>
                                                             <div class="col-sm-10">
                                                                 <input type="file" id="inputTeachPhoto"  class="form-control" name="teachPhoto">
+                                                                <span class="help_block"></span>
                                                                 <p class="help-block">请选择头像上传</p>
                                                             </div>
                                                         </div>
@@ -129,18 +133,21 @@
                                                             <label for="editName" class="col-sm-2 control-label" >teachName</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="editName"  name="teachName" placeholder="teachName">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="editPhone" class="col-sm-2 control-label">Phone</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="teachPhone" class="form-control-static" id="editPhone" >
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="editEmail" class="col-sm-2 control-label">Email</label>
                                                             <div class="col-sm-10">
                                                                 <input type="password" name="teachEmail" class="form-control-static" id="editEmail" placeholder="Password">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -172,6 +179,7 @@
                                                             <input type="hidden" name="teachId" id="editPhotoId">
                                                             <div class="col-sm-10">
                                                                 <input type="file" id="editPhoto"  class="form-control" name="teachPhoto">
+                                                                <span class="help_block"></span>
                                                                 <p class="help-block">请选择头像上传</p>
                                                             </div>
                                                         </div>
@@ -265,9 +273,119 @@
         EditableTable.init();
     });
 
+    //显示校验信息方法
+    function show_validate_msg(ele,status,msg){
+        $(ele).parent().removeClass("has-error has-success");
+        $(ele).next("span").text("");
+        if ("success"==status){
+            $(ele).parent().addClass("has-success");
+            $(ele).next("span").text(msg);
+        }else if ("error"==status){
+            $(ele).parent().addClass("has-error");
+            $(ele).next("span").text(msg);
+        }
+    }
+    //校验表单数据
+    function validate_add_form(){
+        //    拿到校验数据，使用正则表达式
+        let inputTeachName = $("#inputTeachName").val();
+        let regTeachName = /^[\u2E80-\u9FFF]{2,5}$/;
+        if(!regTeachName.test(inputTeachName)){
+            // alert("昵称格式为2-6位中英文混合");
+            show_validate_msg("#inputTeachName","error","讲师名格式为2-5位中文");
+            return false;
+        }else {
+            show_validate_msg("#inputTeachName","success","");
+        }
+
+        let inputTeachEmail = $("#inputTeachEmail").val();
+        let regTeachEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        if(!regTeachEmail.test(inputTeachEmail)){
+            show_validate_msg("#inputTeachEmail","error","请输入正确邮箱格式");
+            return false;
+        }else {
+            show_validate_msg("#inputTeachEmail","success","");
+        }
+        let inputTeachPhone = $("#inputTeachPhone").val();
+        let regPhone = /^[1]([3-9])[0-9]{9}$/;
+        if(!regPhone.test(inputTeachPhone)){
+            show_validate_msg("#inputTeachPhone","error","请输入正确号段的手机号");
+            return false;
+        }else {
+            show_validate_msg("#inputTeachPhone","success","");
+        }
+        let inputTeachPhoto = $("#inputTeachPhoto").val();
+        let regPhoto = /^.*?\.(jpg|png)$/;
+        if(!regPhoto.test(inputTeachPhoto)){
+            show_validate_msg("#inputTeachPhoto","error","请传入【.jpg】或【.png】格式图片");
+            return false;
+        }else {
+            show_validate_msg("#inputTeachPhoto","success","");
+        }
+
+        return true;
+
+    }
+
+    function validate_edit_form(){
+
+        let editName = $("#editName").val();
+        let regNickName = /^[\u2E80-\u9FFF]{2,5}$/;
+        if(!regNickName.test(editName)){
+            // alert("昵称格式为2-6位中英文混合");
+            show_validate_msg("#editName","error","讲师名格式为2-6位中英文混合");
+            return false;
+        }else {
+            show_validate_msg("#editName","success","");
+        }
+
+        let inputEmail = $("#editEmail").val();
+        let regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        if(!regEmail.test(inputEmail)){
+            show_validate_msg("#editEmail","error","请输入正确邮箱格式");
+            return false;
+        }else {
+            show_validate_msg("#editEmail","success","");
+        }
+        let inputPhone = $("#editPhone").val();
+        let regPhone = /^[1]([3-9])[0-9]{9}$/;
+        if(!regPhone.test(inputPhone)){
+            show_validate_msg("#editPhone","error","请输入正确号段的手机号");
+            return false;
+        }else {
+            show_validate_msg("#editPhone","success","");
+        }
+
+        return true;
+
+    }
+
+    function photo_edit_form(){
+        let exampleInputFile = $("#editPhoto").val();
+        let regPhoto = /^.*?\.(jpg|png)$/;
+        if(!regPhoto.test(exampleInputFile)){
+            show_validate_msg("#editPhoto","error","请传入【.jpg】或【.png】格式图片");
+            return false;
+        }else {
+            show_validate_msg("#editPhoto","success","");
+        }
+
+        return true;
+    }
+
+
+
+
+
+
+
     //添加老师
     $("#saveTeach").click(function(){
         //    模态框填写表单数据交给服务器
+        //    进行校验
+        if(!validate_add_form()){
+            return false;
+        }
         //    发送ajax请求保存讲师
         let form = document.getElementById("form");
         var formdata = new FormData(form);
@@ -321,6 +439,12 @@
 
     //    回显讲师信息
     $(document).on("click","#editTeacher",function () {
+        $("#editName").parent().removeClass("has-error has-success");
+        $("#editName").next("span").text("");
+        $("#editEmail").parent().removeClass("has-error has-success");
+        $("#editEmail").next("span").text("");
+        $("#editPhone").parent().removeClass("has-error has-success");
+        $("#editPhone").next("span").text("");
         let teachId = $(this).attr("teachId");
         getTeacher(teachId);
         $("#editSave").attr("teachId",teachId);
@@ -328,6 +452,9 @@
 
     //    修改讲师信息
     $(document).on("click","#editSave",function () {
+        if(!validate_edit_form()){
+            return false;
+        }
         let teachId = $(this).attr("teachId");
         // alert(formdata.get("userPhoto"))
         $.ajax({
@@ -352,6 +479,7 @@
     })
     //    查询讲师信息
     function  getTeacher(teachId){
+
         $.ajax({
             url:"/selectTeach/"+teachId,
             type:"GET",
@@ -365,12 +493,17 @@
     }
     //修改头像
     $(document).on("click","#teachPhoto",function () {
+        $("#editPhoto").parent().removeClass("has-error has-success");
+        $("#editPhoto").next("span").text("");
         let teachId = $(this).attr("teachId");
         $("#editPhotoSave").attr("teachId",teachId);
 
         $("#editPhotoId").attr("value",teachId);
     })
     $(document).on("click","#editPhotoSave",function () {
+        if(!photo_edit_form()){
+            return false;
+        }
         let teachId = $(this).attr("teachId");
         let form = document.getElementById("editPhotoForm");
         var formdata = new FormData(form);

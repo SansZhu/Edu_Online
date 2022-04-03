@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>Login</title>
+
+    <div th:include="common/admin_common :: common_head"></div>
+</head>
+
+<body class="login-body">
+
+<div class="container">
+
+</div>
+
+
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script>
+    // $("#goLogin").click(function () {
+    //     window.location.href="/login";
+    // });
+    // $("#goMain").click(function () {
+    //     window.location.href="/";
+    // });
+
+    $(document).ready(function() {
+        alert("恭喜您注册成功，恭喜您注册成功，即将返回登录页面")
+        window.location.href="/login";
+    })
+</script>
+</body>
+</html>

@@ -98,4 +98,15 @@ public class UserServiceImpl implements UserService {
         }else
             return false;
     }
+
+    @Override
+    public boolean isUserHas(String userName) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_name",userName);
+        List<User> users = userMapper.selectList(queryWrapper);
+        if (users.isEmpty()){
+            return true;
+        }
+        return false;
+    }
 }

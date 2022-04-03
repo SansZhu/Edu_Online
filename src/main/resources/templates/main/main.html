@@ -15,6 +15,9 @@
             background: url("/imgs/back.jpg") no-repeat center;
             background-size:  cover;
         }
+        .bg{
+            background-color: #ffffff;
+        }
     </style>
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -52,6 +55,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a th:href="@{/}">主页</a></li>
                 <li><a th:href="@{/course_list}">全部课程</a></li>
+                <li><a th:href="@{/teach_list}">全部讲师</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" th:if="${session.user == null}">
                 <li ><a th:href="@{/login}">登录</a></li>
@@ -66,9 +70,9 @@
                     <ul class="dropdown-menu navbar-right">
                         <li><a href="#" th:text="${session.user.nickname}"></a></li>
                         <li class="divider"></li>
-                        <li><a href="#">我的收藏</a></li>
+                        <li><a th:href="@{/collection}">我的收藏</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">历史记录</a></li>
+                        <li><a th:href="@{/history}">历史记录</a></li>
                         <li class="divider"></li>
                         <li><a th:href="@{/logout}">退出登录</a></li>
                     </ul>
@@ -78,7 +82,7 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-<div class="container">
+<div class="container bg">
 
     <div class="row row-offcanvas row-offcanvas-right">
 
@@ -98,19 +102,19 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active" >
-                            <a th:href="@{/main.html}" style="padding: 0px"> <img th:src="${maincourse[1].coursePhoto}" style="width: 1200px ;height: 500px" th:alt="${maincourse[1].courseName}"></a>
+                            <a th:href="@{/video(courseId=${maincourse[1].courseId})}" style="padding: 0px"> <img th:src="${maincourse[1].coursePhoto}" style="width: 1200px ;height: 500px" th:alt="${maincourse[1].courseName}"></a>
                             <div class="carousel-caption">
                                 [[${maincourse[1].courseName}]]
                             </div>
                         </div>
                         <div class="item">
-                            <a th:href="@{/main.html}" style="padding: 0px"> <img th:src="${maincourse[2].coursePhoto}" style="width: 1200px ;height: 500px"  th:alt="${maincourse[2].courseName}"></a>
+                            <a th:href="@{/video(courseId=${maincourse[2].courseId})}" style="padding: 0px"> <img th:src="${maincourse[2].coursePhoto}" style="width: 1200px ;height: 500px"  th:alt="${maincourse[2].courseName}"></a>
                             <div class="carousel-caption">
                                 [[${maincourse[2].courseName}]]
                             </div>
                         </div>
                         <div class="item">
-                            <a th:href="@{/main.html}" style="padding: 0px"> <img th:src="${maincourse[3].coursePhoto}" style="width: 1200px ;height: 500px"  th:alt="${maincourse[3].courseName}"></a>
+                            <a th:href="@{/video(courseId=${maincourse[3].courseId})}" style="padding: 0px"> <img th:src="${maincourse[3].coursePhoto}" style="width: 1200px ;height: 500px"  th:alt="${maincourse[3].courseName}"></a>
                             <div class="carousel-caption">
                                 [[${maincourse[3].courseName}]]
                             </div>

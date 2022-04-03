@@ -84,12 +84,14 @@
                                                             <label for="inputVideoTitle" class="col-sm-2 control-label">VideoTitle</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="videoTitle" class="form-control" id="inputVideoTitle" placeholder="CourseName">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputVideoOrder" class="col-sm-2 control-label">VideoOrder</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="inputVideoOrder"  name="videoOrder">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <input type="hidden" class="form-control" id="CourseId"  name="courseId" th:value="${courseId}">
@@ -97,7 +99,8 @@
                                                             <label for="inputVideo" class="col-sm-2 control-label">Video</label>
                                                             <div class="col-sm-10">
                                                                 <input type="file" id="inputVideo"  class="form-control" name="inputVideo">
-                                                                <p class="help-block">请选择视频上传</p>
+                                                                <span class="help_block"></span>
+                                                                <p class="help-block">请选择视频上传（只支持【.mp4】格式视频上传）</p>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -175,6 +178,79 @@
     jQuery(document).ready(function() {
         EditableTable.init();
     });
+    //显示校验信息方法
+    function show_validate_msg(ele,status,msg){
+        $(ele).parent().removeClass("has-error has-success");
+        $(ele).next("span").text("");
+        if ("success"==status){
+            $(ele).parent().addClass("has-success");
+            $(ele).next("span").text(msg);
+        }else if ("error"==status){
+            $(ele).parent().addClass("has-error");
+            $(ele).next("span").text(msg);
+        }
+    }
+    //校验表单数据
+    function validate_add_form(){
+        let courseId = $("#CourseId").val();
+        //    拿到校验数据，使用正则表达式
+        let inputVideoTitle = $("#inputVideoTitle").val();
+        let inputVideoOrder = $("#inputVideoOrder").val();
+        let regCourseName = /^.{2,20}$/;
+        $.ajax({
+            url:"/videoTitleIsHas?videoTitle="+inputVideoTitle+"&courseId="+courseId,
+            type:"GET",
+            success:function (result) {
+                // alert(result);
+                if (result== 0){
+                    show_validate_msg("#inputVideoTitle","error","视频标题已存在，请更改");
+                    return false;
+                }
+            }
+        })
+        if(!regCourseName.test(inputVideoTitle)){
+            // alert("昵称格式为2-6位中英文混合");
+            show_validate_msg("#inputVideoTitle","error","视频标题长度限制为2-20位");
+            return false;
+        }else {
+            show_validate_msg("#inputVideoTitle","success","");
+        }
+
+        $.ajax({
+            url:"/videoOrderIsHas?videoOrder="+inputVideoOrder+"&courseId="+courseId,
+            type:"GET",
+            success:function (result) {
+                // alert(result);
+                if (result== 0){
+                    show_validate_msg("#inputVideoOrder","error","视频顺序号已存在，请更改");
+                    return false;
+                }
+            }
+        })
+
+        let regTeachEmail = /^(?:[1-9]?\d|100)$/;
+        if(!regTeachEmail.test(inputVideoOrder)){
+            show_validate_msg("#inputVideoOrder","error","课程视频顺序只能用数字1-100");
+            return false;
+        }else {
+            show_validate_msg("#inputVideoOrder","success","");
+        }
+
+        let inputVideo = $("#inputVideo").val();
+        let regPhoto = /^.*?\.(mp4)$/;
+        if(!regPhoto.test(inputVideo)){
+            show_validate_msg("#inputVideo","error","请传入【.mp4】格式文件");
+            return false;
+        }else {
+            show_validate_msg("#inputVideo","success","");
+        }
+
+        return true;
+
+    }
+
+
+
 
     $("#backBtn").click(function () {
         window.location.href="/course_manager";
@@ -187,6 +263,10 @@
     //新增视频
     $("#saveVideo").click(function(){
         //    模态框填写表单数据交给服务器
+        if(!validate_add_form()){
+            //    进行校验
+            return false;
+        }
         //    发送ajax请求保存视频
         let form = document.getElementById("form");
        let courseId= $(this).attr("courseId");

@@ -17,4 +17,5 @@ public interface CourseService {
     boolean updateCourse(Integer courseId,Integer teachId,String courseType,String detail,String courseName);
     boolean deleteCourse(Integer courseId);
     boolean updatePhoto(Integer courseId, String photoUrl);
+    List<Course> getAllCourseByType(String courseType);
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import top.zshan.eduonline.bean.User;
 import top.zshan.eduonline.service.UserService;
+import top.zshan.eduonline.service.impl.CountServiceImpl;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +25,8 @@ public class LoginController {
 
     @Autowired
     UserService userService;
-
+    @Autowired
+    CountServiceImpl countService;
 //    进入login页
     @GetMapping("/login")
     public String loginPage(){
@@ -36,14 +38,22 @@ public class LoginController {
     public String login(User user, HttpSession session, Model model){
         String userName = user.getUserName();
         User confirmUser = userService.confirmUser(userName);
-        String password = confirmUser.getPassword();
-        if (password.equals(user.getPassword())){
-            session.setAttribute("user",confirmUser);
-            return "redirect:/index.html";
+        System.out.println(confirmUser);
+        if (confirmUser != null){
+            String password = confirmUser.getPassword();
+            if (password.equals(user.getPassword())){
+                session.setAttribute("user",confirmUser);
+                countService.setCountDaily();
+                return "redirect:/index.html";
+            }else {
+                model.addAttribute("msg","密码错误！");
+                return "login/login";
+            }
         }else {
-            model.addAttribute("msg","账号或密码错误！");
+            model.addAttribute("msg","账号不存在！");
             return "login/login";
         }
+
 
     }
 

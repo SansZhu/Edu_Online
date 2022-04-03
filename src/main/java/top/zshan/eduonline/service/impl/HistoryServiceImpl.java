@@ -42,4 +42,12 @@ public class HistoryServiceImpl implements HistoryService {
            historyMapper.insert(new History(userId, courseId, null, videoOrder));
         }
     }
+
+    @Override
+    public List<History> getHistory(Integer userId) {
+        QueryWrapper<History> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id",userId);
+        List<History> histories = historyMapper.selectList(queryWrapper);
+        return histories;
+    }
 }

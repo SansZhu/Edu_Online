@@ -16,6 +16,9 @@ import top.zshan.eduonline.service.impl.CourseServiceImpl;
 import top.zshan.eduonline.service.impl.UserServiceImpl;
 import top.zshan.eduonline.service.impl.ViewsServiceImpl;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,5 +106,14 @@ public class JDBCTest {
     @Test
     public void testViews(){
         viewsService.updateViews(3);
+    }
+
+    @Test
+    public void testDate(){
+        long l = System.currentTimeMillis();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(l);
+//        date.setTime(date.getTime());
+        System.out.println(dateFormat.format(date));
     }
 }

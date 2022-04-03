@@ -108,7 +108,13 @@ public class TeacherController {
         }else {
             return Msg.fail();
         }
+    }
 
+    @GetMapping("/teach_list")
+    public String teachList(Model model){
+        List<Teacher> allTeacher = teacherService.getAllTeacher();
+        model.addAttribute("allTeacher",allTeacher);
+        return "front/teach_list";
     }
 
 }

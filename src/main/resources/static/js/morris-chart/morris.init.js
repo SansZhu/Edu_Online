@@ -16,28 +16,24 @@ Morris.Bar({
 
 
 
-var day_data = [
-    {"elapsed": "I", "value": 34},
-    {"elapsed": "II", "value": 24},
-    {"elapsed": "III", "value": 3},
-    {"elapsed": "IV", "value": 12},
-    {"elapsed": "V", "value": 13},
-    {"elapsed": "VI", "value": 22},
-    {"elapsed": "VII", "value": 5},
-    {"elapsed": "VIII", "value": 26},
-    {"elapsed": "IX", "value": 12},
-    {"elapsed": "X", "value": 19}
-];
-Morris.Line({
-    element: 'graph-line',
-    data: day_data,
-    xkey: 'elapsed',
-    ykeys: ['value'],
-    labels: ['value'],
-    lineColors:['#1FB5AD'],
-    parseTime: false
-});
-
+// var day_data =
+//     [{"elapsed":"2022-04-01","value":"221"},
+//         {"elapsed":"2022-03-31","value":"999"},
+//         {"elapsed":"2022-03-30","value":"827"},
+//         {"elapsed":"2022-03-29","value":"123"},
+//         {"elapsed":"2022-03-28","value":"440"}
+//         ]
+// ;
+// Morris.Line({
+//     element: 'graph-line',
+//     data: day_data,
+//     xkey: 'elapsed',
+//     ykeys: ['value'],
+//     labels: ['value'],
+//     lineColors:['#1FB5AD'],
+//     parseTime: false
+// });
+//
 
 
 

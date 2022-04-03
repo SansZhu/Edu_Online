@@ -115,5 +115,15 @@ public class UserController {
         }
 
     }
+    @ResponseBody
+    @GetMapping("/userIsHas")
+    public Integer userIsHas(@RequestParam("userName")String userName){
+//        true就是没有相同用户名，可用
+        boolean userHas = userService.isUserHas(userName);
+        if (userHas){
+            return 1;
+        }
+        return 0;
+    }
 
 }

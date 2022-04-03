@@ -13,4 +13,6 @@ public interface VideoService {
     boolean insertCourseForOne(Video video);
     boolean deleteVideo(Integer videoId);
     Video getVideoForOne(Integer courseId,Integer videoOrder);
+    boolean videoTitleIsHas(String videoTitle,Integer courseId);
+    boolean videoOrderIsHas(Integer videoOrder,Integer courseId);
 }

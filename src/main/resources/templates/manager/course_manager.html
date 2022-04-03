@@ -81,6 +81,7 @@
                                                             <label for="inputCourseName" class="col-sm-2 control-label">CourseName</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="courseName" class="form-control" id="inputCourseName" placeholder="CourseName">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -99,12 +100,14 @@
                                                             <label for="inputCourseDetail" class="col-sm-2 control-label">CourseDetail</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="courseDetail" class="form-control" id="inputCourseDetail" placeholder="CourseDetail">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputCoursePhoto" class="col-sm-2 control-label">Photo</label>
                                                             <div class="col-sm-10">
                                                                 <input type="file" id="inputCoursePhoto"  class="form-control" name="coursePhoto">
+                                                                <span class="help_block"></span>
                                                                 <p class="help-block">请选择头像上传</p>
                                                             </div>
                                                         </div>
@@ -135,6 +138,7 @@
                                                             <label for="editCourseName" class="col-sm-2 control-label">CourseName</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="editCourseName" class="form-control" id="editCourseName" placeholder="CourseName">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -153,6 +157,7 @@
                                                             <label for="editCourseDetail" class="col-sm-2 control-label">CourseDetail</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="editCourseDetail" class="form-control" id="editCourseDetail" placeholder="CourseDetail">
+                                                                <span class="help_block"></span>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -184,6 +189,7 @@
                                                             <input type="hidden" name="courseId" id="editPhotoId">
                                                             <div class="col-sm-10">
                                                                 <input type="file" id="editPhoto"  class="form-control" name="coursePhoto">
+                                                                <span class="help_block"></span>
                                                                 <p class="help-block">请选择封面上传</p>
                                                             </div>
                                                         </div>
@@ -215,11 +221,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="" th:each="course : ${allCourse}">
+                                    <tr class="" th:each="course,index : ${allCourse}">
                                         <td width="160px" height="110px"><img th:src="${course.coursePhoto}" th:courseId="${course.courseId}" data-toggle="modal" data-target="#editPhotoModal" id="coursePhoto" class="" width="150px" height="100px" ></td>
                                         <td th:text="${course.courseId}"></td>
                                         <td th:text="${course.courseName}"></td>
-                                        <td th:text="${allTeacherName[course.courseId-1]}"></td>
+                                        <td th:text="${allTeacherName[index.count-1]}"></td>
                                         <td th:text="${course.courseType}"></td>
                                         <td th:text="${course.detail}"></td>
                                         <td><button type="button" id="editCourse" th:courseId="${course.courseId}" data-toggle="modal" data-target="#editModal" class="btn btn-info">修改课程信息</button></td>
@@ -270,6 +276,91 @@
     jQuery(document).ready(function() {
         EditableTable.init();
     });
+    //显示校验信息方法
+    function show_validate_msg(ele,status,msg){
+        $(ele).parent().removeClass("has-error has-success");
+        $(ele).next("span").text("");
+        if ("success"==status){
+            $(ele).parent().addClass("has-success");
+            $(ele).next("span").text(msg);
+        }else if ("error"==status){
+            $(ele).parent().addClass("has-error");
+            $(ele).next("span").text(msg);
+        }
+    }
+    //校验表单数据
+    function validate_add_form(){
+        //    拿到校验数据，使用正则表达式
+        let inputCourseName = $("#inputCourseName").val();
+        let regCourseName = /^[0-9A-Za-z\u4E00-\u9FFF]{2,20}$/;
+        if(!regCourseName.test(inputCourseName)){
+            // alert("昵称格式为2-6位中英文混合");
+            show_validate_msg("#inputCourseName","error","课程名格式为2-20位中英文数字组合");
+            return false;
+        }else {
+            show_validate_msg("#inputCourseName","success","");
+        }
+
+        let inputCourseDetail = $("#inputCourseDetail").val();
+        let regTeachEmail = /^.{2,100}$/;
+        if(!regTeachEmail.test(inputCourseDetail)){
+            show_validate_msg("#inputCourseDetail","error","课程简介限制长度为2-100位");
+            return false;
+        }else {
+            show_validate_msg("#inputCourseDetail","success","");
+        }
+        let inputCoursePhoto = $("#inputCoursePhoto").val();
+        let regPhoto = /^.*?\.(jpg|png)$/;
+        if(!regPhoto.test(inputCoursePhoto)){
+            show_validate_msg("#inputCoursePhoto","error","请传入【.jpg】或【.png】格式图片");
+            return false;
+        }else {
+            show_validate_msg("#inputTeachPhoto","success","");
+        }
+
+        return true;
+
+    }
+
+    function validate_edit_form(){
+
+        let editCourseName = $("#editCourseName").val();
+        let regNickName = /^[0-9A-Za-z\u4E00-\u9FFF]{2,20}$/;
+        if(!regNickName.test(editCourseName)){
+            // alert("昵称格式为2-6位中英文混合");
+            show_validate_msg("#editCourseName","error","课程名格式为2-20位中英文数字组合");
+            return false;
+        }else {
+            show_validate_msg("#editCourseName","success","");
+        }
+
+        let editCourseDetail = $("#editCourseDetail").val();
+        let regEmail = /^.{2,100}$/;
+        if(!regEmail.test(editCourseDetail)){
+            show_validate_msg("#editCourseDetail","error","课程简介限制长度为2-100位");
+            return false;
+        }else {
+            show_validate_msg("#editCourseDetail","success","");
+        }
+        return true;
+
+    }
+
+    function photo_edit_form(){
+        let exampleInputFile = $("#editPhoto").val();
+        let regPhoto = /^.*?\.(jpg|png)$/;
+        if(!regPhoto.test(exampleInputFile)){
+            show_validate_msg("#editPhoto","error","请传入【.jpg】或【.png】格式图片");
+            return false;
+        }else {
+            show_validate_msg("#editPhoto","success","");
+        }
+
+        return true;
+    }
+
+
+
 
     $("#addnbutton").click(function () {
         getTeacherName();
@@ -312,6 +403,10 @@
     //添加课程
     $("#saveCourse").click(function(){
         //    模态框填写表单数据交给服务器
+        //    进行校验
+        if(!validate_add_form()){
+            return false;
+        }
         //    发送ajax请求保存讲师
         let form = document.getElementById("form");
         let formdata = new FormData(form);
@@ -343,6 +438,12 @@
     })
     //    回显课程信息
     $(document).on("click","#editCourse",function () {
+        $("#editCourseName").parent().removeClass("has-error has-success");
+        $("#editCourseName").next("span").text("");
+        $("#editCourseDetail").parent().removeClass("has-error has-success");
+        $("#editCourseDetail").next("span").text("");
+
+        let teachId = $(this).attr("teachId");
         let courseId = $(this).attr("courseId");
         getEditTeacherName();
         getEditCourseType();
@@ -352,6 +453,9 @@
 
     //    修改课程信息
     $(document).on("click","#editSave",function () {
+        if(!validate_edit_form()){
+            return false;
+        }
         let courseId = $(this).attr("courseId");
         // alert(formdata.get("userPhoto"))
         $.ajax({
@@ -442,12 +546,17 @@
     })
     //修改封面
     $(document).on("click","#coursePhoto",function () {
+        $("#editPhoto").parent().removeClass("has-error has-success");
+        $("#editPhoto").next("span").text("");
         let courseId = $(this).attr("courseId");
         $("#editPhotoSave").attr("courseId",courseId);
 
         $("#editPhotoId").attr("courseId",courseId);
     })
     $(document).on("click","#editPhotoSave",function () {
+        if(!photo_edit_form()){
+            return false;
+        }
         let courseId = $(this).attr("courseId");
         let form = document.getElementById("editPhotoForm");
         var formdata = new FormData(form);
