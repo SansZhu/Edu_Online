@@ -5,58 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03e8f071-4880-4888-8430-aa79e62fbcae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/bean/CoursePlayCount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/bean/LoginCountChart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/CountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/HistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/RegistController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/CountService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/CountServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edu_online.iml" beforeDir="false" afterPath="$PROJECT_DIR$/edu_online.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/bean/Count.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/bean/Count.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/CollectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/FrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/FrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/ManagerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/VideoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/mapper/CountMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/mapper/CountMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/CollectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/CollectionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/CourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/HistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/VideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/ViewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/ViewsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/CollectionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/CollectionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/CourseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/CourseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/HistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/HistoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/VideoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/VideoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/ViewsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/ViewsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/morris-chart/morris.init.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/morris-chart/morris.init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/morris-chart/morris.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/morris-chart/morris.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/admin_common.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/admin_common.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/front_common.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login/regist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/collection.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/collection.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/course_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/course_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/history.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/teach_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login/regist_success.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/teach_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/teach_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/user_info.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/video.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/videoPlayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/videoPlayer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/admin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/count.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/count.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/course_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/course_manager.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/course_video_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/course_video_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/fontawesome.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/teach_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/teach_manager.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/user_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/user_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/top/zshan/eduonline/JDBCTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/top/zshan/eduonline/JDBCTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +193,8 @@
       <workItem from="1648718915589" duration="22545000" />
       <workItem from="1648808121178" duration="21377000" />
       <workItem from="1648893996698" duration="16843000" />
-      <workItem from="1648954583102" duration="5359000" />
+      <workItem from="1648954583102" duration="9598000" />
+      <workItem from="1649128838514" duration="6577000" />
     </task>
     <task id="LOCAL-00001" summary="test push">
       <created>1648214168930</created>
@@ -280,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648743511520</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="simple function end, front confirm and fix some bug, i think have another bug in it.">
+      <created>1648961879833</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1648961879833</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,6 +269,7 @@
     <MESSAGE value="add some admin manager pages" />
     <MESSAGE value="add front main page and back-end page, simple login function is realized" />
     <MESSAGE value="complete that front course list page , video list page, videoplayer page and did some optimize." />
-    <option name="LAST_COMMIT_MESSAGE" value="complete that front course list page , video list page, videoplayer page and did some optimize." />
+    <MESSAGE value="simple function end, front confirm and fix some bug, i think have another bug in it." />
+    <option name="LAST_COMMIT_MESSAGE" value="simple function end, front confirm and fix some bug, i think have another bug in it." />
   </component>
 </project>

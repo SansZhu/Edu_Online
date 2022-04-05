@@ -44,7 +44,7 @@
 
         <!--sidebar nav start-->
         <ul class="nav nav-pills nav-stacked custom-nav">
-            <li><a th:href="@{/main.html}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a th:href="@{/main.html}"><i class="fa fa-home"></i> <span>返回主页</span></a></li>
 
 
             <li><a th:href="@{/user_manager}"><i class="fa fa-user"></i> <span>用户管理</span></a></li>
@@ -67,17 +67,12 @@
     <a class="toggle-btn"><i class="fa fa-bars"></i></a>
     <!--toggle button end-->
 
-    <!--search start-->
-    <form class="searchform" action="index.html" method="post">
-        <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
-    </form>
-    <!--search end-->
 
     <!--notification menu start -->
     <div class="menu-right">
         <ul class="notification-menu" >
-            <li style="width: 70px">
-                <a href="#" class="btn btn-default dropdown-toggle" style="width: 50px"  data-toggle="dropdown">
+            <li style="width: 70px;height:60px">
+                <a href="#" class="btn btn-default dropdown-toggle" style="width: 70px;height:60px"  data-toggle="dropdown">
                     <img alt="" th:src="${session.user.userPhoto}" class="media-object" style="width: 50px">
 
                     <span class="caret"></span>

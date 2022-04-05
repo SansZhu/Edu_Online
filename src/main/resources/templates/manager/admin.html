@@ -7,7 +7,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>General</title>
+    <title>后台管理</title>
 
     <!--gritter css-->
     <link rel="stylesheet" type="text/css" href="js/gritter/css/jquery.gritter.css" />
@@ -32,13 +32,13 @@
         <!-- page heading start-->
         <div class="page-heading">
             <h3>
-                Example page header <small>Subtext for header</small>
+                admin
             </h3>
             <ul class="breadcrumb">
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a href="#">admin</a>
                 </li>
-                <li class="active">General UI Components </li>
+                <li class="active">欢迎页</li>
             </ul>
         </div>
         <!-- page heading end-->
@@ -50,9 +50,8 @@
                 <div class="col-md-12">
                     <!--breadcrumbs start -->
                     <ul class="breadcrumb panel">
-                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li><a href="#">Dashboard</a></li>
-                        <li class="active">Current page</li>
+                        <li><a th:href="@{/admin}"><i class="fa fa-home"></i> admin</a></li>
+                        <li class="active">欢迎页</li>
                     </ul>
                     <!--breadcrumbs end -->
                 </div>
