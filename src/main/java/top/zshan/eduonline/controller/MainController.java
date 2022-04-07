@@ -41,7 +41,6 @@ public class MainController {
     public String main(Model model){
         List<Course> mainCourse = courseService.getMainPageCourse();
         model.addAttribute("maincourse",mainCourse);
-        System.out.println(mainCourse);
 //        model.addAttribute("msg","111111111111111111");
         return "main/main";
     }

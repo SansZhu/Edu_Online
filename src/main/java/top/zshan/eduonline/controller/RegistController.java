@@ -3,6 +3,7 @@ package top.zshan.eduonline.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import top.zshan.eduonline.service.impl.FileServiceImpl;
 import top.zshan.eduonline.service.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author SansZhu
@@ -41,7 +43,10 @@ public class RegistController {
                          HttpSession session){
         String photoName = fileService.saveFileUser(photo);
         String photoUrl= "\\userimg\\"+photoName;
-        boolean b = userService.insertUserForOne(new User(username, email, phone, photoUrl, 0, password, nickname));
+        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
+
+        String passwordEncryption = DigestUtils.md5DigestAsHex(passwordBytes);
+        boolean b = userService.insertUserForOne(new User(username, email, phone, photoUrl, 0, passwordEncryption, nickname));
         if (b){
             session.setAttribute("regist","regist");
             return "redirect:/regist_success";

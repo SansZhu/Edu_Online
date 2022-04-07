@@ -20,4 +20,5 @@ public interface UserService {
      boolean updateUser(Integer userId,String nickname,String email,String phone,Integer authority);
      boolean updatePhoto(Integer userId,String photo);
      boolean isUserHas(String userName);
+     boolean updatePassword(Integer userId,String password);
 }

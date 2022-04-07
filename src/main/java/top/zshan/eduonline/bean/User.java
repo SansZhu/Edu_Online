@@ -21,6 +21,7 @@ public class User {
     public User() {
     }
 
+
     public User(String userPhoto) {
         this.userPhoto = userPhoto;
     }

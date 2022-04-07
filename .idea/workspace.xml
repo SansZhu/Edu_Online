@@ -5,14 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03e8f071-4880-4888-8430-aa79e62fbcae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/head_back.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/common/front_common.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/top/zshan/eduonline/PasswordEncryption.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/admin_common.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/admin_common.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/bean/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/FrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/FrontController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/RegistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/RegistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/zshan/eduonline/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/FileTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/collection.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/collection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/course_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/course_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/history.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/history.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/teach_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/teach_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/front/videoPlayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/front/videoPlayer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/count.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/count.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/course_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/course_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/course_video_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/course_video_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/teach_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/teach_manager.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manager/user_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manager/user_manager.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +37,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -78,18 +91,13 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.EduOnlineApplication">
-    <configuration name="JDBCTest.insertUserForOneTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="edu_online" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="top.zshan.eduonline.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="top.zshan.eduonline" />
-      <option name="MAIN_CLASS_NAME" value="top.zshan.eduonline.JDBCTest" />
-      <option name="METHOD_NAME" value="insertUserForOneTest" />
-      <option name="TEST_OBJECT" value="method" />
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -158,6 +166,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PasswordEncryption.Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="edu_online" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="top.zshan.eduonline.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="top.zshan.eduonline" />
+      <option name="MAIN_CLASS_NAME" value="top.zshan.eduonline.PasswordEncryption" />
+      <option name="METHOD_NAME" value="Test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EduOnlineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="edu_online" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="top.zshan.eduonline.EduOnlineApplication" />
@@ -167,11 +191,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PasswordEncryption.Test" />
         <item itemvalue="JUnit.JDBCTest.testDate" />
         <item itemvalue="JUnit.JDBCTest.testViews" />
         <item itemvalue="JUnit.JDBCTest.testCollection" />
         <item itemvalue="JUnit.JDBCTest.testDelteUser" />
-        <item itemvalue="JUnit.JDBCTest.insertUserForOneTest" />
       </list>
     </recent_temporary>
   </component>
@@ -194,7 +218,8 @@
       <workItem from="1648808121178" duration="21377000" />
       <workItem from="1648893996698" duration="16843000" />
       <workItem from="1648954583102" duration="9598000" />
-      <workItem from="1649128838514" duration="6577000" />
+      <workItem from="1649128838514" duration="7267000" />
+      <workItem from="1649339393084" duration="8593000" />
     </task>
     <task id="LOCAL-00001" summary="test push">
       <created>1648214168930</created>
@@ -245,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648961879833</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="first complete, prepare to beautify front page">
+      <created>1649154280323</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1649154280323</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,6 +302,7 @@
     <MESSAGE value="add front main page and back-end page, simple login function is realized" />
     <MESSAGE value="complete that front course list page , video list page, videoplayer page and did some optimize." />
     <MESSAGE value="simple function end, front confirm and fix some bug, i think have another bug in it." />
-    <option name="LAST_COMMIT_MESSAGE" value="simple function end, front confirm and fix some bug, i think have another bug in it." />
+    <MESSAGE value="first complete, prepare to beautify front page" />
+    <option name="LAST_COMMIT_MESSAGE" value="first complete, prepare to beautify front page" />
   </component>
 </project>

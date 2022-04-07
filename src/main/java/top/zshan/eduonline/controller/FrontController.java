@@ -72,16 +72,19 @@ public class FrontController {
             boolean collectionForCourse = collectionService.isCollectionForCourse(course, userId);
             model.addAttribute("historyOrder",historyOrder);
             model.addAttribute("isCollection",collectionForCourse);
+            Course courseForOne = courseService.getCourseForOne(course);
+            List<Video> videoByCourseId = videoService.getVideoByCourseId(course);
+            Integer views = viewsService.getViews(course);
+            System.out.println(videoByCourseId);
+            model.addAttribute("course",courseForOne);
+            model.addAttribute("views",views);
+            model.addAttribute("videoList",videoByCourseId);
+            return "front/video";
+        }else {
+            model.addAttribute("error","请先登录再观看视频哦！");
+            return "error/5xx";
         }
 
-        Course courseForOne = courseService.getCourseForOne(course);
-        List<Video> videoByCourseId = videoService.getVideoByCourseId(course);
-        Integer views = viewsService.getViews(course);
-        System.out.println(videoByCourseId);
-        model.addAttribute("course",courseForOne);
-        model.addAttribute("views",views);
-        model.addAttribute("videoList",videoByCourseId);
-        return "front/video";
     }
 
     @GetMapping("/videoPlayer")

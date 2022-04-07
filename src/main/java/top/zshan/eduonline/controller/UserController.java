@@ -3,6 +3,7 @@ package top.zshan.eduonline.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.zshan.eduonline.bean.Msg;
@@ -11,6 +12,7 @@ import top.zshan.eduonline.service.impl.FileServiceImpl;
 import top.zshan.eduonline.service.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -59,7 +61,10 @@ public class UserController {
 //        System.out.println("asdasd");
         String photoName = fileService.saveFileUser(photo);
         String photoUrl= "\\userimg\\"+photoName;
-        boolean b = userService.insertUserForOne(new User(username, email, phone, photoUrl, 0, password, nickname));
+        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
+
+        String passwordEncryption = DigestUtils.md5DigestAsHex(passwordBytes);
+        boolean b = userService.insertUserForOne(new User(username, email, phone, photoUrl, 0, passwordEncryption, nickname));
         if (b){
             return Msg.success();
         }else {
@@ -108,6 +113,21 @@ public class UserController {
         String photoName = fileService.saveFileUser(photo);
         String photoUrl= "\\userimg\\"+photoName;
         boolean b = userService.updatePhoto(userId, photoUrl);
+        if (b){
+            return Msg.success();
+        }else {
+            return Msg.fail();
+        }
+
+    }
+    @ResponseBody
+    @PostMapping("/edit_password/{userId}")
+    public Msg saveUser(@RequestParam("userId") Integer userId,
+                        @RequestParam("editPassword")String password ){
+        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
+
+        String passwordEncryption = DigestUtils.md5DigestAsHex(passwordBytes);
+        boolean b = userService.updatePassword(userId, passwordEncryption);
         if (b){
             return Msg.success();
         }else {

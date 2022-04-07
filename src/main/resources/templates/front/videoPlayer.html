@@ -30,58 +30,17 @@
     <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">IT Study Platform</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a th:href="@{/}">主页</a></li>
-                <li><a th:href="@{/course_list}">全部课程</a></li>
-                <li><a th:href="@{/teach_list}">全部讲师</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right" th:if="${session.user == null}">
-                <li ><a th:href="@{/login}">登录</a></li>
-                <li><a th:href="@{/regist}">注册</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right"  th:if="${session.user != null}">
-                <li class="dropdown row">
-                    <!--                    <p class="text-muted text-center col-md-3" style=" font-size: 20px;margin-top: 10px" th:text="${session.user.nickname}"></p>-->
-                    <a  href="#" class="dropdown-toggle  col-md-3" style="padding : 2px;margin-right: 50px " data-toggle="dropdown">
-                        <img th:src="${session.user.userPhoto}" class="img-circle"  width="50px" height="50px" >
-                    </a>
-                    <ul class="dropdown-menu navbar-right">
-                        <li><a href="#" th:text="${session.user.nickname}"></a></li>
-                        <li class="divider"></li>
-                        <li><a th:href="@{/collection}">我的收藏</a></li>
-                        <li class="divider"></li>
-                        <li><a th:href="@{/history}">历史记录</a></li>
-                        <li class="divider"></li>
-                        <li><a th:href="@{/logout}">退出登录</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.nav-collapse -->
-    </div><!-- /.container -->
-</nav><!-- /.navbar -->
-
+<nav th:replace="common/front_common :: #front_head"></nav>
 <div class="container-fluid">
     <div  class="row">
 <!-- 4:3 aspect ratio -->
         <div class="col-lg-9">
-             <video class="embed-responsive-item" id="player" th:src="${video.videoUrl}" th:videoNextOrder="${video.videoOrder+1}" th:courseId="${course.courseId}" autoplay controls="controls">
+             <video class="embed-responsive-item" id="player" style="width: 1280px;height: 720px;margin-left: 100px" th:src="${video.videoUrl}" th:videoNextOrder="${video.videoOrder+1}" th:courseId="${course.courseId}" autoplay controls="controls">
                  您的浏览器不支持video，请更换浏览器
              </video>
         </div>
         <div class="col-lg-3" >
-            <div class="list-group">
+            <div class="list-group" style="margin-right: 50px" >
                 <a type="button" th:href="@{/videoPlayer(videoOrder=${videolist.videoOrder},courseId=${course.courseId})}" class="list-group-item list-group-item-success " th:if="${videolist.videoOrder < video.videoOrder}" th:each="videolist : ${videoList}">[[${videolist.videoTitle}]]<div class="glyphicon glyphicon-ok"></div></a>
                 <a type="button" th:href="@{/videoPlayer(videoOrder=${videolist.videoOrder},courseId=${course.courseId})}" class="list-group-item  " th:if="${videolist.videoOrder == video.videoOrder}" th:each="videolist : ${videoList}">[[${videolist.videoTitle}]]<div class="glyphicon glyphicon-play-circle"></div></a>
                 <a type="button" th:href="@{/videoPlayer(videoOrder=${videolist.videoOrder},courseId=${course.courseId})}" class="list-group-item " th:if="${videolist.videoOrder > video.videoOrder}" th:each="videolist : ${videoList}">[[${videolist.videoTitle}]]</a>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import top.zshan.eduonline.bean.User;
@@ -11,6 +12,7 @@ import top.zshan.eduonline.service.UserService;
 import top.zshan.eduonline.service.impl.CountServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author SansZhu
@@ -41,7 +43,10 @@ public class LoginController {
         System.out.println(confirmUser);
         if (confirmUser != null){
             String password = confirmUser.getPassword();
-            if (password.equals(user.getPassword())){
+            String loginPassword = user.getPassword();
+            byte[] passwordBytes = loginPassword.getBytes(StandardCharsets.UTF_8);
+            String passwordEncryption = DigestUtils.md5DigestAsHex(passwordBytes);
+            if (password.equals(passwordEncryption)){
                 session.setAttribute("user",confirmUser);
                 countService.setCountDaily();
                 return "redirect:/index.html";

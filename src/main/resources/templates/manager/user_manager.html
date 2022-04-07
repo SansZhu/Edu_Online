@@ -164,12 +164,12 @@
                                                                 <p type="text" name="userName" class="form-control-static" id="editUsername" >
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="editPassword" class="col-sm-2 control-label">Password</label>
-                                                            <div class="col-sm-10">
-                                                                <p type="password" name="password" class="form-control-static" id="editPassword" placeholder="Password">
-                                                            </div>
-                                                        </div>
+<!--                                                        <div class="form-group">-->
+<!--                                                            <label for="editPassword" class="col-sm-2 control-label">Password</label>-->
+<!--                                                            <div class="col-sm-10">-->
+<!--                                                                <p type="password" name="password" class="form-control-static" id="editPassword" placeholder="Password">-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
                                                         <div class="form-group">
                                                             <label for="editEmail" class="col-sm-2 control-label">Email</label>
                                                             <div class="col-sm-10">
@@ -235,6 +235,37 @@
                                         </div>
                                     </div>
                                     <!--                                    edit button end-->
+                                    <!--                                    edit button start-->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="editPasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="editPasswordModalLabel">修改密码</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!--                                                    add new form start-->
+                                                    <form id="editPasswordForm" class="form-horizontal" method="post" enctype="multipart/form-data" >
+                                                        <input type="hidden" name="userId" id="editPasswordId">
+                                                        <div class="form-group">
+                                                            <label for="editPassword" class="col-sm-2 control-label" >Password</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="editPassword"  name="editPassword" placeholder="Password">
+                                                                <span class="help_block"></span>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <!--                                                    add new form end-->
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                    <button type="button" class="btn btn-primary" id="editPasswordSave">保存</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--                                    edit button end-->
 <!--                                    <div class="btn-group pull-right">-->
 <!--                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>-->
 <!--                                        </button>-->
@@ -267,7 +298,7 @@
                                         <td th:text="${user.userId}"></td>
                                         <td th:text="${user.nickname}"></td>
                                         <td th:text="${user.userName}"></td>
-                                        <td th:text="${user.password}"></td>
+                                        <td><button id="editPasswordBtn" th:userId="${user.userId}" type="button" data-toggle="modal" data-target="#editPasswordModal" class="btn btn-primary">修改密码</button></td>
                                         <td th:text="${user.userPhone}"></td>
                                         <td th:text="${user.userEmail}"></td>
                                         <td th:text="${user.authority}"></td>
@@ -452,6 +483,18 @@
         return true;
     }
 
+    function password_edit_form(){
+        let editPassword = $("#editPassword").val();
+        let regPassword = 	/^[a-z0-9_-]{6,18}$/;
+        if(!regPassword.test(editPassword)){
+            show_validate_msg("#editPassword","error","密码格式为6-18位英文数字混合");
+            return false;
+        }else {
+            show_validate_msg("#editPassword","success","");
+        }
+        return true;
+    }
+
 
     $("#saveUser").click(function(){
     //    模态框填写表单数据交给服务器
@@ -601,6 +644,48 @@
                 $("#editPhotoModal").modal('hide');
                 //清除模态框数据
                 $(':input','#editPhotoForm')
+                    .not(':button, :submit, :reset, :hidden')
+                    .val('')
+                    .removeAttr('checked')
+                    .removeAttr('selected');
+                //重新载入界面
+                window.location.reload();
+            }
+        })
+
+    })
+    //修改密码
+    $(document).on("click","#editPasswordBtn",function () {
+        $("#editPassword").parent().removeClass("has-error has-success");
+        $("#editPassword").next("span").text("");
+        let userId = $(this).attr("userId");
+        $("#editPasswordSave").attr("userId",userId);
+
+        $("#editPasswordId").attr("value",userId);
+    })
+    $(document).on("click","#editPasswordSave",function () {
+        if(!password_edit_form()){
+            return false;
+        }
+        let userId = $(this).attr("userId");
+        let form = document.getElementById("editPasswordForm");
+        var formdata = new FormData(form);
+        // alert(formdata.get("userPhoto"))
+        $.ajax({
+            url:"/edit_password/"+userId,
+            type:"POST",
+            data: formdata,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success:function(result){
+                //提示信息
+                alert(result.msg);
+                //隐藏模态框
+                $("#editPasswordModal").modal('hide');
+                //清除模态框数据
+                $(':input','#editPasswordForm')
                     .not(':button, :submit, :reset, :hidden')
                     .val('')
                     .removeAttr('checked')

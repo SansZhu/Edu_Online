@@ -109,4 +109,17 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public boolean updatePassword(Integer userId, String password) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id",userId);
+        User user = new User();
+        user.setPassword(password);
+        int update = userMapper.update(user, queryWrapper);
+        if (update == 1){
+            return true;
+        }else
+            return false;
+    }
 }
